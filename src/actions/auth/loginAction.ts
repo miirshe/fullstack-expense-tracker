@@ -1,7 +1,7 @@
 "use server";
 
 import { loginSchema } from "@/schemas/userSchemas";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { getUserByEmail } from "@/data/users/user";
 import { AuthError } from "next-auth";
 
@@ -46,4 +46,9 @@ export const userLogin = async (
 
     throw error;
   }
+};
+
+export const Logout = async () => {
+  await signOut();
+  return { success: "Logged out!" };
 };

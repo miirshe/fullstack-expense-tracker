@@ -7,6 +7,7 @@ import logo from "@/assets/logo.svg";
 import { menuItems } from "@/data/menuItems";
 import { BiSearch, BiLogOut } from "react-icons/bi";
 import { FiChevronRight, FiChevronDown } from "react-icons/fi";
+import { signOut } from "@/auth";
 
 import {
   Sheet,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/sheet";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { Logout } from "@/actions/auth/loginAction";
 
 const Sidebar = () => {
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
@@ -40,6 +42,10 @@ const Sidebar = () => {
     } else if (activeTab !== index) {
       setActiveTab(index);
     }
+  };
+
+  const onSubmitFunction = async () => {
+    await Logout();
   };
   return (
     <>
@@ -97,7 +103,7 @@ const Sidebar = () => {
             })}
 
             {/* sign out form  */}
-            <form>
+            <form onSubmit={onSubmitFunction}>
               <button
                 type="submit"
                 className=" mx-4 text-slate-600 dark:text-[#949bbd hover:bg-primary/10 flex items-center  py-[7px] px-4 rounded-md cursor-pointer"

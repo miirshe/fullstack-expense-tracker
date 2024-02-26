@@ -1,5 +1,7 @@
 "use client";
 import React, { useTransition } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   Card,
   CardContent,
@@ -41,8 +43,20 @@ const RegisterPgae = () => {
   const onSubmitFunction = async (values: z.infer<typeof registerSchema>) => {
     try {
       startTransition(() => {
-        userRegister(values);
-        router.push("/auth/login");
+        userRegister(values).then((data) => {
+          if (data?.error) {
+            console.log(data?.error);
+            toast.error(data?.error);
+            form.reset();
+          }
+
+          if (data?.success) {
+            console.log(data?.success);
+            toast.success(data?.success);
+            form.reset();
+            router.push("/auth/login");
+          }
+        });
       });
     } catch (error) {
       console.log(error);
@@ -134,6 +148,7 @@ const RegisterPgae = () => {
           </p>
         </CardContent>
       </Card>
+      <Toaster />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 import React, { useTransition } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Card,
   CardContent,
@@ -48,10 +49,14 @@ const LoginPgae = () => {
         userLogin(values, callbackUrl)
           .then((data) => {
             if (data?.error) {
+              console.log(data?.error);
+              toast.error(data?.error);
               form.reset();
             }
 
             if (data?.success) {
+              console.log(data?.success);
+              toast.success(data?.success);
               form.reset();
             }
           })
@@ -134,6 +139,7 @@ const LoginPgae = () => {
           </p>
         </CardContent>
       </Card>
+      <Toaster />
     </div>
   );
 };
