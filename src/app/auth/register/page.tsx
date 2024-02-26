@@ -20,12 +20,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { registerSchema } from "@/schemas/userSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { userRegister } from "@/actions/auth/registerAction";
 import { FiLoader } from "react-icons/fi";
 const RegisterPgae = () => {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
@@ -40,6 +42,7 @@ const RegisterPgae = () => {
     try {
       startTransition(() => {
         userRegister(values);
+        router.push("/auth/login");
       });
     } catch (error) {
       console.log(error);
@@ -49,8 +52,8 @@ const RegisterPgae = () => {
     <div className="flex flex-col h-screen justify-center items-center">
       <Card className="md:w-[23rem] mx-3 md:mx-0">
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center">Trash Cash</CardTitle>
-          <CardDescription>Welcome to Trash Cash 👋✋</CardDescription>
+          <CardTitle className="text-left">Trash Cash</CardTitle>
+          <CardDescription>Welcome to Trash Cash 👋</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -118,16 +121,14 @@ const RegisterPgae = () => {
                 variant={"default"}
                 disabled={isPending}
               >
-                {isPending && (
-                  <FiLoader className="ml-5 animate-spin" size={20} />
-                )}
+                {isPending ? <FiLoader className="animate-spin mr-4" /> : null}
                 <span>Register</span>
               </Button>
             </form>
           </Form>
           <p className="mt-3 text-center space-x-2">
             <span>already have an account?</span>
-            <Link className="text-red-600" href={"/auth/login"}>
+            <Link className="text-slate-600 " href={"/auth/login"}>
               Login
             </Link>
           </p>

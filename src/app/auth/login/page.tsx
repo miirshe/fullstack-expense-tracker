@@ -67,8 +67,12 @@ const LoginPgae = () => {
     <div className="flex flex-col h-screen justify-center items-center">
       <Card className="md:w-[23rem] mx-3 md:mx-0">
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center">Trash Cash</CardTitle>
-          <CardDescription>Welcome to Trash Cash 👋✋</CardDescription>
+          <CardTitle className="text-left">
+            <span className="text-left  text-[1.2rem] font-semibold text-[#25232c]">
+              Trash Cash
+            </span>
+          </CardTitle>
+          <CardDescription>Welcome to Trash Cash 👋</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -117,13 +121,14 @@ const LoginPgae = () => {
                 type="submit"
                 variant={"default"}
               >
-                {isPending ? <FiLoader className="animate-spin" /> : "Login"}
+                {isPending ? <FiLoader className="animate-spin mr-4" /> : null}
+                <span>Login</span>
               </Button>
             </form>
           </Form>
           <p className="mt-3 text-center space-x-2">
             <span>I don't have an account?</span>
-            <Link className="text-red-600" href={"/auth/register"}>
+            <Link className="text-slate-600" href={"/auth/register"}>
               Register
             </Link>
           </p>
