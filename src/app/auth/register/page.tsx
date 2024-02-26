@@ -30,7 +30,7 @@ const RegisterPgae = () => {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
     },
@@ -57,7 +57,7 @@ const RegisterPgae = () => {
             <form onSubmit={form.handleSubmit(onSubmitFunction)}>
               <FormField
                 control={form.control}
-                name="username"
+                name="name"
                 render={({ field }) => (
                   <FormItem className="mt-4">
                     <FormLabel>Username</FormLabel>
@@ -118,7 +118,9 @@ const RegisterPgae = () => {
                 variant={"default"}
                 disabled={isPending}
               >
-                {isPending && <FiLoader className="ml-5 animate-spin" size={20} />}
+                {isPending && (
+                  <FiLoader className="ml-5 animate-spin" size={20} />
+                )}
                 <span>Register</span>
               </Button>
             </form>

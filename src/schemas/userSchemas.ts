@@ -10,8 +10,8 @@ export const loginSchema = z.object({
 })
 
 export const registerSchema = z.object({
-    username: z.string({
-        invalid_type_error: "username is required"
+    name: z.string({
+        invalid_type_error: "name is required"
     }),
     email: z.string({
         invalid_type_error: "email is required"
