@@ -36,6 +36,6 @@ export const userRegister = async (values : z.infer<typeof registerSchema>) => {
 
         return { success : "user created successfully"}
     } catch (error) {
-        console.error(error);
+        throw new Error(error as any ).message;
     }
 }

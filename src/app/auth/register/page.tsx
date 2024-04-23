@@ -77,12 +77,12 @@ const RegisterPgae = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="mt-4">
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
                         className="w-full md:w-[19rem]"
                         type="text"
-                        placeholder="Enter Username..."
+                        placeholder="Enter Name..."
                         {...field}
                         disabled={isPending}
                       />
@@ -90,7 +90,7 @@ const RegisterPgae = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
               <FormField
                 control={form.control}
                 name="email"
@@ -109,7 +109,7 @@ const RegisterPgae = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
               <FormField
                 control={form.control}
                 name="password"
@@ -128,7 +128,7 @@ const RegisterPgae = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
               <Button
                 className="w-full text-center mt-5"
                 type="submit"

@@ -100,7 +100,7 @@ const LoginPgae = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
               <FormField
                 control={form.control}
                 name="password"
@@ -119,7 +119,7 @@ const LoginPgae = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
               <Button
                 disabled={isPending}
                 className="w-full text-center mt-5"
